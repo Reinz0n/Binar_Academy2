@@ -1,0 +1,142 @@
+###
+GET http://localhost:8000
+
+### COMPONENTS
+### GET data all components
+GET http://localhost:8000/components
+
+### GET detail component
+GET http://localhost:8000/components/1
+
+### Create component data 1
+POST http://localhost:8000/components
+Content-Type: application/json
+
+{
+    "name": "Baterai",
+    "description": "baterai tahan lama"
+}
+
+### Create component data 2
+POST http://localhost:8000/components
+Content-Type: application/json
+
+{
+    "name": "RAM",
+    "description": "RAM 8 gb"
+}
+
+### Create component data 3
+POST http://localhost:8000/components
+Content-Type: application/json
+
+{
+    "name": "Processor",
+    "description": "Processor Intel"
+}
+
+### Update component data 2
+PUT http://localhost:8000/components/2
+Content-Type: application/json
+
+{
+    "name": "RAM",
+    "description": "RAM 16 gb"
+}
+
+### Delete component
+DELETE http://localhost:8000/components/3
+
+
+### PRODUCTS
+### GET data all products
+GET http://localhost:8000/products
+
+### GET detail product
+GET http://localhost:8000/products/1
+
+### Create product data 1
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+    "name": "HP",
+    "quantity": 10
+}
+
+### Create product data 2
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+    "name": "Laptop",
+    "quantity": 10
+}
+
+### Create product data 3
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+    "name": "Tablet",
+    "quantity": 10
+}
+
+### Update product data 2
+PUT http://localhost:8000/products/2
+Content-Type: application/json
+
+{
+    "name": "Laptop",
+    "quantity": 15
+}
+
+### Delete product
+DELETE http://localhost:8000/products/3
+
+
+### SUPPLIERS
+### GET data all suppliers
+GET http://localhost:8000/suppliers
+
+### GET detail supplier
+GET http://localhost:8000/suppliers/1
+
+### Create supplier data 1
+POST http://localhost:8000/suppliers
+Content-Type: application/json
+
+{
+    "name": "Galaxy Inc.",
+    "address": "Jakarta"
+}
+
+### Create supplier data 2
+POST http://localhost:8000/suppliers
+Content-Type: application/json
+
+{
+    "name": "Brotherhood Company",
+    "address": "Yogyakarta"
+}
+
+### Create supplier data 3
+POST http://localhost:8000/suppliers
+Content-Type: application/json
+
+{
+    "name": "Zon Holdings",
+    "address": "Semarang"
+}
+
+### Update supplier data 2
+PUT http://localhost:8000/suppliers/2
+Content-Type: application/json
+
+{
+    "name": "Brotherhood Company",
+    "address": "Jogja"
+}
+
+### Delete supplier
+DELETE http://localhost:8000/suppliers/3

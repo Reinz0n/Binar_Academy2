@@ -1,0 +1,706 @@
+openapi: 3.0.0
+info:
+  title: Challenge 5
+  description: Ini adalah dokumentasi api untuk challenge 5 yang apinya dikembangkan dari challenge-challenge sebelumnya
+  contact: 
+    email: mikhael.rivandio@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+tags:
+  - name: Component
+    description: Digunakan untuk proses CRUD Component
+  - name: Product
+    description: Digunakan untuk proses CRUD Product
+  - name: Supplier
+    description: Digunakan untuk proses CRUD Supplier
+paths:
+  /components:
+    get:
+      tags:
+        - Component
+      summary: Melihat daftar Component
+      description: Melihat semua daftar Component
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: array
+                    items:
+                      type: object
+                      example:
+                        - id: 1
+                          name: Baterai
+                          description: baterai tahan lama
+                        - id: 2
+                          name: RAM
+                          description: RAM 16 gb
+    post:
+      tags:
+        - Component
+      summary: Membuat Component
+      description: Membuat sebuah Component
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Komponen
+                description:
+                  type: string
+                  example: komponen baru
+      responses:
+        "201":
+          description: Creation Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 100
+                      name:
+                        type: string
+                        example: Komponen
+                      description:
+                        type: string
+                        example: Komponen baru                    
+  /components/{component_id}:
+    get:
+      tags:
+        - Component
+      summary: Melihat daftar Component
+      description: Melihat daftar Component tertentu
+      parameters:
+        - name: component_id
+          in: path
+          description: Component ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 1
+                      name:
+                        type: string
+                        example: Baterai
+                      description:
+                        type: string
+                        example: baterai tahan lama
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find component with id {component_id}!
+                  data: 
+                    type: object
+                    example: null
+    put:
+      tags:
+        - Component
+      summary: Mengubah Component
+      description: Mengubah Component tertentu
+      parameters:
+        - name: component_id
+          in: path
+          description: Component ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 100
+                      name:
+                        type: string
+                        example: Komponen123
+                      description:
+                        type: string
+                        example: komponen terbaik
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find component with id {component_id}!
+                  data: 
+                    type: object
+                    example: null
+    delete:
+      tags:
+        - Component
+      summary: Menghapus Component
+      description: Menghapus Component tertentu
+      parameters:
+        - name: component_id
+          in: path
+          description: Component ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Deletion Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find component with id {component_id}!
+                  data: 
+                    type: object
+                    example: null
+  /products:
+    get:
+      tags:
+        - Product
+      summary: Melihat daftar Product
+      description: Melihat semua daftar Product
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: array
+                    items:
+                      type: object
+                      example:
+                        - id: 1
+                          name: HP
+                          quantity: 10
+                        - id: 2
+                          name: Laptop
+                          quantity: 15
+    post:
+      tags:
+        - Product
+      summary: Membuat Product
+      description: Membuat sebuah Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Produk
+                quantity:
+                  type: number
+                  example: 10
+      responses:
+        "201":
+          description: Creation Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 100
+                      name:
+                        type: string
+                        example: Produk
+                      quantity:
+                        type: number
+                        example: 10                   
+  /products/{product_id}:
+    get:
+      tags:
+        - Product
+      summary: Melihat daftar Product
+      description: Melihat daftar Product tertentu
+      parameters:
+        - name: product_id
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 1
+                      name:
+                        type: string
+                        example: HP
+                      quantity:
+                        type: number
+                        example: 10
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find product with id {product_id}!
+                  data: 
+                    type: object
+                    example: null
+    put:
+      tags:
+        - Product
+      summary: Mengubah Product
+      description: Mengubah Product tertentu
+      parameters:
+        - name: product_id
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 100
+                      name:
+                        type: string
+                        example: Produk123
+                      quantity:
+                        type: number
+                        example: 20
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find product with id {product_id}!
+                  data: 
+                    type: object
+                    example: null
+    delete:
+      tags:
+        - Product
+      summary: Menghapus Product
+      description: Menghapus Product tertentu
+      parameters:
+        - name: product_id
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Deletion Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find product with id {product_id}!
+                  data: 
+                    type: object
+                    example: null
+  /suppliers:
+    get:
+      tags:
+        - Supplier
+      summary: Melihat daftar Supplier
+      description: Melihat semua daftar Supplier
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: array
+                    items:
+                      type: object
+                      example:
+                        - id: 1
+                          name: Galaxy Inc.
+                          address: Jakarta
+                        - id: 2
+                          name: Brotherhood Company
+                          address: Yogyakarta
+    post:
+      tags:
+        - Supplier
+      summary: Membuat Supplier
+      description: Membuat sebuah Supplier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Supplier
+                address:
+                  type: string
+                  example: address123
+      responses:
+        "201":
+          description: Creation Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 100
+                      name:
+                        type: string
+                        example: Supplier
+                      address:
+                        type: string
+                        example: address123                   
+  /suppliers/{supplier_id}:
+    get:
+      tags:
+        - Supplier
+      summary: Melihat daftar Supplier
+      description: Melihat daftar Supplier tertentu
+      parameters:
+        - name: supplier_id
+          in: path
+          description: Supplier ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 1
+                      name:
+                        type: string
+                        example: Galaxy Inc.
+                      address:
+                        type: string
+                        example: Jakarta
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find supplier with id {supplier_id}!
+                  data: 
+                    type: object
+                    example: null
+    put:
+      tags:
+        - Supplier
+      summary: Mengubah Supplier
+      description: Mengubah Supplier tertentu
+      parameters:
+        - name: supplier_id
+          in: path
+          description: Supplier ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Update Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 100
+                      name:
+                        type: string
+                        example: Supplier123
+                      address:
+                        type: string
+                        example: address123abc
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find supplier with id {supplier_id}!
+                  data: 
+                    type: object
+                    example: null
+    delete:
+      tags:
+        - Supplier
+      summary: Menghapus Supplier
+      description: Menghapus Supplier tertentu
+      parameters:
+        - name: supplier_id
+          in: path
+          description: Supplier ID
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Deletion Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message: 
+                    type: string
+                    example: success
+                  data: 
+                    type: object
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  message: 
+                    type: string
+                    example: can't find supplier with id {supplier_id}!
+                  data: 
+                    type: object
+                    example: null
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                
